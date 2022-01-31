@@ -2,12 +2,15 @@ require('./bootstrap')
 
 import { createApp } from 'vue'
 
-import ExampleComponent from './components/ExampleComponent'
+import NewMem from './components/NewMem'
+import test from './components/test'
+
+
 
 const app = createApp({})
 
-app.component('example-component', ExampleComponent)
-
+app.component('new-mem', NewMem)
+app.component('test', test)
 
 
 app.mount('#app')
