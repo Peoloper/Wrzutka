@@ -19,29 +19,11 @@ trait PhotoTrait
         $file = $folder.uniqid() . '.'.$image_type;
 
         $image_resize = Image::make($image_base64);
-        //$image_resize->resize(550);
         $image_resize->save(public_path('images/'.$folder .'/'.$file));
 
         $path = $folder.'/'.$file;
         return $path;
 
-
-//        $imageData = file_get_contents($image);
-//        dd($imageData);
-//        $extension = $image->getClientOriginalExtension();
-//        $originalName = $image->getClientOriginalName();
-//        $originalName = sha1($originalName . time());
-//        $date = Carbon::now()->format('Y-m-d');
-//        $fileName = $date . '_' . uniqid() . '_' . $originalName . '.' . $extension;
-//
-//        $image_resize = Image::make($image->getRealPath());
-//        $image_resize->resize(550);
-//
-//        $image_resize->save(public_path('images/'.$folder .'/'.$fileName));
-//
-//        $path = $folder.'/'.$fileName;
-//
-//        return $path;
     }
 
 
