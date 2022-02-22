@@ -1,22 +1,26 @@
-import SettingsComponent from "./components/SettingsComponent";
 
 require('./bootstrap')
 
 import { createApp } from 'vue'
+import {Toaster} from "@meforma/vue-toaster";
+
 
 import NewMemComponent from './components/NewMemComponent'
-import getCommentsComponent from './components/GetCommentsComponent'
-import test from './components/test'
+import CommentsComponent from './components/CommentsComponent'
 import favoriteComponent from './components/FavoriteComponent'
 import LikeComponent from "./components/LikeComponent";
-
+import SettingsComponent from "./components/SettingsComponent";
 
 
 const app = createApp({})
+app.use(Toaster,{
+    position: "top-left",
+
+});
 
 app.component('new-mem', NewMemComponent)
-app.component('get-comments', getCommentsComponent)
-app.component('test', test)
+app.component('comments', CommentsComponent)
+
 app.component('favorite', favoriteComponent)
 app.component('like', LikeComponent)
 app.component('setting', SettingsComponent)
