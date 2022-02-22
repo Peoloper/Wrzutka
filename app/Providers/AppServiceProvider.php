@@ -30,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Paginator::useBootstrap();
+
         Validator::extend('image64', function ($attribute, $value, $parameters, $validator) {
             $type = explode('/', explode(':', substr($value, 0, strpos($value, ';')))[1])[1];
             if (in_array($type, $parameters)) {
@@ -42,9 +44,13 @@ class AppServiceProvider extends ServiceProvider
             return str_replace(':values',join(",",$parameters),$message);
         });
 
-        Paginator::useBootstrap();
-        View::share('categories', Category::all());
-        View::share('tags', Tag::all());
-        View::share('featuredMemes', Mem::with(['photos', 'user.photos'])->where('is_published', 1)->latest()->paginate(5));
+        View::share('featuredMemes',  cache()->remember('featuredMemes', today()->endOfDay(), function()
+        {
+            return Mem::with(['photos', 'user.photos' ])
+                ->where('is_published', 1)
+                ->inRandomOrder()
+                ->limit(5)
+                ->get();
+        }));
     }
 }
