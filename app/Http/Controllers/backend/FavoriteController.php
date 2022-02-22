@@ -14,9 +14,9 @@ class FavoriteController extends Controller
     {
         return view('backend.favourite', [
             'memes' =>  Auth::user()->favorites()
-                ->with(['photos', 'user.photos'])
+                ->with(['photos', 'user.photos', 'favorite', 'liked'])
                 ->latest()
-                ->paginate(10)
+                ->paginate(8)
         ]);
     }
 

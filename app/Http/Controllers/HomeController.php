@@ -11,11 +11,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-
-        $memes = Mem::with(['photos', 'user.photos'])
+        $memes = Mem::with(['favorite','liked','photos', 'user.photos'])
             ->where('is_published', 1)
             ->latest('updated_at')
-            ->paginate(5);
+            ->paginate(8);
 
         return view('welcome', [
             'memes' => $memes,

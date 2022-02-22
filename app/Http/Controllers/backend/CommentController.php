@@ -23,6 +23,13 @@ class CommentController extends Controller
             ->get();
 
         return response()->json($comment);
+
+        //        $comment = Comment::with(['user', 'user.photos'])
+        //            ->where('mem_id', $memid)
+        //            ->latest()
+        //            ->get();
+
+        //return response()->json($mem->comments()->latest()->get());
     }
 
     public function getCommentsUser($userName)

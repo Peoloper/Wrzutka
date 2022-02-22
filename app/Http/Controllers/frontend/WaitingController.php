@@ -13,10 +13,10 @@ class WaitingController extends Controller
 {
     public function index()
     {
-        $memes = Mem::with(['photos', 'user.photos'])
-            ->where('is_published', 1)
+        $memes = Mem::with(['favorite','liked','photos', 'user.photos'])
+            ->where('is_published', 0)
             ->latest('updated_at')
-            ->paginate(5);
+            ->paginate(8);
 
         return view('frontend.waiting', [
             'memes' => $memes,

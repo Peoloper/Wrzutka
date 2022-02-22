@@ -31,7 +31,6 @@ class MemController extends Controller
     {
         return view('frontend.mem', [
             'mem' => $mem,
-            'tags' =>Tag::all()
         ]);
     }
 

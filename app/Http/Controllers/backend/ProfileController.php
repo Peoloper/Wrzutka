@@ -15,10 +15,10 @@ class ProfileController extends Controller
 
         return view('backend.profile', [
             'user' => $user,
-            'memes' => Mem::with(['photos', 'user.photos'])
+            'memes' => Mem::with(['favorite','liked','photos', 'user.photos'])
                 ->where('user_id', $user->id)
                 ->latest()
-                ->paginate(10),
+                ->paginate(8),
 
         ]);
     }
