@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CommentRequest extends FormRequest
+class PasswordRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,15 +14,15 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'comment' => [
+            'password' => [
                 'required',
-                'string',
-                'max:1000'
-            ],
-            'mem_id' =>[
+                'min:8',
+                'confirmed'
+                ],
+            'password_confirmation' => [
                 'required',
-                'integer'
-            ]
+                'min:8'
+                ]
         ];
     }
 

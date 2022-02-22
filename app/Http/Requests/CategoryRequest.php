@@ -18,10 +18,6 @@ class CategoryRequest extends FormRequest
             'name' => request()->isMethod('put')
                 ? 'required|string|min:5|max:30|unique:categories,name,'.$this->category->id
                 : 'required|string|unique:categories|min:5|max:30',
-
-            'image' => request()->isMethod('put')
-                ? 'nullable|mimes:jpeg,jpg,png,gif,svg|max:8000'
-                : 'required|mimes:jpeg,jpg,png,gif,svg|max:8000'
         ];
     }
 

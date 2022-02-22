@@ -14,12 +14,6 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => request()->isMethod('put')
-                ? 'nullable|string|min:5|max:32|unique:users,name,'.$this->profile->id
-                : 'required|string|unique:users|min:5|max:32',
-            'email' => request()->isMethod('put')
-                ? 'required|email|min:5|max:50|unique:users,email,'.$this->profile->id
-                : 'required|email|min:5|max:50|unique:users',
             'password' => request()->isMethod('put')
                 ? 'nullable|string|min:8'
                 : 'required|string|min:8|max:50',
