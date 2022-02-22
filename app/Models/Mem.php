@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
+use App\Http\Traits\CacheClear;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Support\Facades\Auth;
 
 class Mem extends Model
 {
     use HasFactory;
+
 
     protected $table = 'memes';
 
@@ -21,7 +21,8 @@ class Mem extends Model
         'title',
         'content',
         'category_id',
-        'is_published'
+        'is_published',
+        'like'
     ];
 
     public function user(): BelongsTo
@@ -49,17 +50,23 @@ class Mem extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function favorited(): bool
+    public function favorites(): HasMany
     {
-        return (bool) Favorite::where('user_id', Auth::id())
-            ->where('mem_id', $this->id)
-            ->first();
+        return $this->hasMany(Favorite::class);
     }
 
-    public function likes(): bool
+    public function favorite()
     {
-        return (bool) Like::where('user_id', Auth::id())
-            ->where('mem_id', $this->id)
-            ->first();
+        return $this->favorites()->where('user_id', auth()->id())->first();
+    }
+
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function like(): bool
+    {
+        return (bool) $this->likes()->where('user_id', auth()->id())->first();
     }
 }

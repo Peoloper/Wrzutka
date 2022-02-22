@@ -47,7 +47,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function posts(): HasMany
+    public function memes(): HasMany
     {
         return $this->hasMany(Mem::class);
     }
@@ -60,7 +60,7 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-    public function favorites()
+    public function favorites(): BelongsToMany
     {
         return $this->belongsToMany(Mem::class, 'favorites');
     }
@@ -69,4 +69,5 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Mem::class, 'likes');
     }
+
 }
