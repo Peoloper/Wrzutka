@@ -11,28 +11,21 @@ class LikeController extends Controller
 {
     public function likeMem(Mem $mem)
     {
+        $mem->update(['like' => $mem->like + 1 ]);
         Auth::user()->likes()->attach($mem->id);
-        $value = $mem->like;
-        $mem->like = $value+1;
-        $mem->save();
 
-        return back();
+        $like = $mem->select('like')->where('id', $mem->id)->first();
+
+        return response()->json($like);
     }
 
     public function unLikeMem(Mem $mem)
     {
+        $mem->update(['like' => $mem->like - 1 ]);
         Auth::user()->likes()->detach($mem->id);
 
-        $value = $mem->like;
-        $mem->like = $value - 1;
-        $mem->save();
+        $like = $mem->select('like')->where('id', $mem->id)->first();
 
-        return back();
-    }
-
-    public function getLikes(Mem $mem)
-    {
-        $test = $mem->select('like')->where('id', $mem->id)->first();
-        return response()->json($test);
+        return response()->json($like);
     }
 }

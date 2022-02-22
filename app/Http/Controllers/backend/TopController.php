@@ -11,6 +11,15 @@ class TopController extends Controller
 {
    public function index()
    {
-       return view('backend.top', ['memes' => Mem::with(['user', 'photos', 'user.photos'])->orderBy('like','ASC')->take(100)->paginate(9)]);
+       $top = Mem::with(['user', 'photos', 'user.photos'])
+           ->where('like', '>' ,999)
+           ->orderBy('like','DESC')
+           ->take(50)
+           ->paginate(5);
+
+
+       return view('backend.top', [
+           'memes' => $top
+       ]);
    }
 }
