@@ -14,17 +14,17 @@ class MemRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => request()->isMethod('put')
-                ? 'required|string|min:5|max:50|unique:memes,title,'.$this->mem->id
-                : 'required|string|unique:memes|min:5|max:50',
+            'title' => [
+              'required'
+            ],
             'content' => [
-                'max: 100'
+                'max: 300'
             ],
             'category_id' => [
                 'required',
                 'integer'
             ],
-            'tags' => [
+            'memTagId' => [
                 'required',
                 'array'
             ]
