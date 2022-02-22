@@ -22858,8 +22858,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/like/' + mem).then(function (response) {
         _this.test = response.data;
         _this.isLikes = true; //console.log(this.test)
-      })["catch"](function (response) {
-        return console.log(response.data);
+      })["catch"](function (response) {// console.log(response.data)
       });
     },
     unLike: function unLike(mem) {
@@ -22928,10 +22927,10 @@ __webpack_require__.r(__webpack_exports__);
       this.formData.memTagId.splice(this.formData.memTagId.indexOf(item), 1);
       this.tags.push(item);
     },
-    selectCategory: function selectCategory(item) {
+    selectedCategory: function selectedCategory(item) {
       this.formData.category_id = item;
     },
-    uploadImage: function uploadImage() {
+    addMem: function addMem() {
       var _this2 = this;
 
       axios.post('/mem', this.formData).then(function (response) {
@@ -23313,7 +23312,7 @@ var _hoisted_28 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onSubmit: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
-      return $options.uploadImage && $options.uploadImage.apply($options, arguments);
+      return $options.addMem && $options.addMem.apply($options, arguments);
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "form-group",
@@ -23402,7 +23401,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
       onClick: function onClick($event) {
         $data.current = category;
-        $options.selectCategory(item.id);
+        $options.selectedCategory(item.id);
       },
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
         current: category == $data.current
@@ -23417,9 +23416,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-success btn-block",
     onClick: _cache[4] || (_cache[4] = function ($event) {
-      $options.uploadImage;
+      $options.addMem;
     })
-  }, "Upload Image"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, "Dodaj mema"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     onClick: _cache[5] || (_cache[5] = function () {
       return $options.cancel && $options.cancel.apply($options, arguments);
