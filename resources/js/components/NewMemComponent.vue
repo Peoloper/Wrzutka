@@ -2,7 +2,7 @@
     <div class="container mt-4">
         <div class="col-md-11 col-lg-9 marginAuto ">
             <div class="card">
-                <form @submit.prevent="uploadImage">
+                <form @submit.prevent="addMem">
                 <div class="card-header">
                     <div class="form-group" id="app" @click="livePaper = true">
                         <input type="text" name="title" class="form-control"
@@ -52,13 +52,13 @@
                     <div  :class="hasError('category_id') ? 'is-invalid' : ''" class="form-control d-flex flex-wrap mt-4" >
                         <div v-for="(item, category) in categories" :key="item.id">
                             <div class="custom-control custom-checkbox" style="margin-right: 10px">
-                                <span  @click="current = category; selectCategory(item.id)" :class="{current:category == current}">{{item.name}}</span>
+                                <span  @click="current = category; selectedCategory(item.id)" :class="{current:category == current}">{{item.name}}</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group mt-5">
-                        <button class="btn btn-success btn-block" @click="uploadImage;">Upload Image</button>
+                        <button class="btn btn-success btn-block" @click="addMem;">Dodaj mema</button>
                         <button type="button" @click="cancel"> Anuluj </button>
                     </div>
                 </div>
@@ -109,11 +109,11 @@ export default {
             this.tags.push(item)
         },
 
-        selectCategory(item)
+        selectedCategory(item)
         {
             this.formData.category_id = item
         },
-        uploadImage(){
+        addMem(){
             axios.post('/mem', this.formData)
                 .then((response) => {
                     this.$toast.success(`Mem został dodany!`);

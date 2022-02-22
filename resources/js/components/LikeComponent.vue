@@ -39,7 +39,9 @@ export default {
                     this.isLikes = true
                     //console.log(this.test)
                 })
-                .catch(response => console.log(response.data));
+                .catch(response => {
+                   // console.log(response.data)
+                });
         },
 
         unLike(mem) {
