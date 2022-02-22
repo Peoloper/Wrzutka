@@ -29,8 +29,8 @@
                     </div>
                     <div class="group-card text-center">
                         @if (Auth::check())
-                            <favorite :mem="{{ $mem->id }}" :favorited={{ $mem->favorite() ? 'true' : 'false' }}></favorite>
-                            <like :mem="{{ $mem->id }}" :likes="{{$mem->like()  ? 'true' : 'false'}}" :counter="{{$mem->like}}"></like>
+                            <favorite :mem="{{ $mem->id }}" :favorited={{ $mem->favorite->count()}}></favorite>
+                            <like :mem="{{ $mem->id }}" :likes="{{$mem->liked->count()}}" :counter="{{$mem->like}}"></like>
                         @endif
                         @hasrole('Admin')
                         <a href="{{route('mem.destroy', $mem)}}" class="btn btn-sm btn-danger mr-1" id="delete">
