@@ -7,7 +7,7 @@
                     <setting></setting>
                 </div>
             </div>
-            <div class="col-md-8 col-lg-4 mt-4 test">
+            <div class="col-md-8 col-lg-4 mt-4 max-width">
                 @include('partials.AuthUser')
             </div>
         </div>
