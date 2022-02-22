@@ -17,7 +17,7 @@ class MemObserver
     public function creating(Mem $mem)
     {
         $mem->slug = Str::slug($mem->title);
-        $mem->user_id = 1;
+        $mem->user_id = \auth()->id();
         $mem->is_published = 0;
     }
 
