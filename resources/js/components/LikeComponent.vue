@@ -1,30 +1,28 @@
 <template>
     <span>
         <a href="#" v-if="isLikes" @click.prevent="unLike(mem)">
-            <i  class="fa fa-heart"></i>
-            ({{this.counter}})
+        <i class="fas fa-plus  fa-lg" style="color:green"></i>
         </a>
         <a href="#" v-else @click.prevent="like(mem)">
-            <i class="far fa-heart"></i>
-             ({{this.counter}})
+             <i class="fas fa-plus  fa-lg " style="color:red"></i>
         </a>
     </span>
+    <p>{{this.test}}</p>
 
 </template>
 
 <script>
 export default {
-    props: ['mem', 'likes'],
+    props: ['mem', 'likes', 'counter'],
     data: function() {
         return {
             isLikes: '',
-            counter: ''
+            test: this.counter,
         }
     },
 
     mounted() {
         this.isLikes = !!this.isLike;
-        this.getLikes(this.mem)
     },
 
     computed: {
@@ -37,8 +35,9 @@ export default {
         like(mem) {
             axios.post('/like/'+mem)
                 .then(response => {
-                    this.getLikes(mem)
+                    this.test = response.data
                     this.isLikes = true
+                    //console.log(this.test)
                 })
                 .catch(response => console.log(response.data));
         },
@@ -46,18 +45,14 @@ export default {
         unLike(mem) {
             axios.post('/unlike/'+mem)
                 .then(response => {
-                    this.getLikes(mem)
+                    this.test = response.data
                     this.isLikes = false
                 })
-                .catch(response => console.log(response.data));
-        },
-        getLikes(mem)
-        {
-            axios.get('/getlikes/'+mem)
-                .then(response => this.counter = response.data)
-                .catch(response => console.log(response.data));
-        },
-    }
+                .catch(response => {
+                    //console.log(response.data)
+                });
+        }
+    },
 }
 </script>
 
