@@ -57,7 +57,7 @@ class Mem extends Model
 
     public function favorite()
     {
-        return $this->favorites()->where('user_id', auth()->id())->first();
+        return $this->favorites()->where('user_id', auth()->id());
     }
 
     public function likes(): HasMany
@@ -65,8 +65,8 @@ class Mem extends Model
         return $this->hasMany(Like::class);
     }
 
-    public function like(): bool
+    public function liked()
     {
-        return (bool) $this->likes()->where('user_id', auth()->id())->first();
+        return $this->likes()->where('user_id', auth()->id());
     }
 }
