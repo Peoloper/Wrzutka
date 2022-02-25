@@ -15,9 +15,9 @@ class CreateMemesTable extends Migration
     {
         Schema::create('memes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title')->unique();
+            $table->string('title');
             $table->string('slug');
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->boolean('is_published')->default(false);
 
             $table->unsignedBigInteger('user_id');

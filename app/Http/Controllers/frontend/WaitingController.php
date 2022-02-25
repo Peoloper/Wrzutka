@@ -15,7 +15,7 @@ class WaitingController extends Controller
     {
         $memes = Mem::with(['favorite','liked','photos', 'user.photos'])
             ->where('is_published', 0)
-            ->latest('updated_at')
+            ->latest('created_at')
             ->paginate(8);
 
         return view('frontend.waiting', [
