@@ -24,12 +24,14 @@ class MemRequest extends FormRequest
                 'required',
                 'integer'
             ],
-            'memTagId' => [
+            'tags' => [
                 'required',
                 'array'
-            ]
-            ,
-            'image' => 'required|image64:jpeg,jpg,png',
+            ],
+            'file' => [
+                'required',
+                'mimes:png,jpeg,jpg,png|max:8000'
+            ],
 
             'is_published' => ['boolean']
         ];
