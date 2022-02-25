@@ -6,7 +6,7 @@
                 <div class="card-header">
                     <div class="form-group" id="app" @click="livePaper = true">
                         <input type="text" name="title" class="form-control"
-                               :class="hasError('title') ? 'is-invalid' : ''" placeholder="Wpisz tytuł" v-model="formData.title">
+                               :class="hasError('title') ? 'is-invalid' : ''" placeholder="Wpisz tytuł" v-model="title">
                         <div v-if="hasError('title')" class="invalid-feedback">
                             {{getError('title')}}
                         </div>
@@ -15,24 +15,24 @@
 
                 <div class="card-body" v-if="livePaper" id="hide">
                     <div class="form-group mt-2">
-                        <textarea type="text" name="content" class="form-control" placeholder="Tekst (opcjonalnie)" v-model="formData.content"></textarea>
+                        <textarea type="text" name="content" class="form-control" placeholder="Tekst (opcjonalnie)" v-model="content"></textarea>
                     </div>
-                    <div class=" img-fluid form-group mt-2"  v-if="formData.image">
-                        <img :src="formData.image" class="img-fluid">
+                    <div class=" img-fluid form-group mt-2"  v-if="image">
+                        <img :src="image" class="img-fluid">
                     </div>
                     <div class="form-group mt-2">
-                        <input type="file" v-on:change="onImageChange" :class="hasError('image') ? 'is-invalid' : ''" class="form-control">
-                        <div v-if="hasError('image')" class="invalid-feedback">
-                            {{getError('image')}}
+                        <input type="file" v-on:change="onImageChange" :class="hasError('file') ? 'is-invalid' : ''" class="form-control">
+                        <div v-if="hasError('file')" class="invalid-feedback">
+                            {{getError('file')}}
                         </div>
                     </div>
                     <label class="mt-3"> Tagi:</label>
-                    <div :class="hasError('memTagId') ? 'is-invalid' : ''" class="form-control mt-4" >
+                    <div :class="hasError('tags') ? 'is-invalid' : ''" class="form-control mt-4" >
                         <div class=" d-flex flex-wrap">
                             <p class="me-2">Sugerowane:</p>
                             <div v-for="(item, tags) in tags" :key="item" :index="tags">
                                 <div class="custom-control custom-checkbox" style="margin-right: 10px">
-                                    <label class="title" @click="() => allTags(item)">{{item.name }}</label>
+                                    <label class="tags" @click="() => allTags(item)">{{item.name }}</label>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                             <p class="me-2">Wybrane:</p>
                             <div v-for="(memTag, memTags) in memTags" :key="memTag.id" :index="memTags">
                                 <div class="custom-control custom-checkbox" style="margin-right: 10px">
-                                    <span class="title" @click="() => selectedTags(memTag)">{{memTag.name }}</span>
+                                    <span class="tags" @click="() => selectedTags(memTag)">{{memTag.name }}</span>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
 
                     <div class="form-group mt-5">
                         <button class="btn btn-success btn-block" @click="addMem;">Dodaj mema</button>
-                        <button type="button" @click="cancel"> Anuluj </button>
+                        <button type="button" @click="reset"> Anuluj </button>
                     </div>
                 </div>
                 </form>
@@ -74,13 +74,14 @@ export default {
     el:'#hide',
     data(){
         return {
-            formData: {
-                title:'',
-                content:'',
-                category_id:'',
-                memTagId: [],
-                image: '',
-            },
+
+            title:'',
+            content:'',
+            category_id:'',
+            memTagId: [],
+
+            image: '',
+            file: "",
             memTags: [],
             current:-1,
             livePaper: false,
@@ -89,37 +90,48 @@ export default {
     },
     methods: {
         onImageChange(e) {
-            let file = e.target.files[0];
+            this.file = e.target.files[0];
             let reader = new FileReader();
-            reader.onloadend=(file) =>{
-                this.formData.image = reader.result
+            reader.onloadend = (file) => {
+                this.image = reader.result
             }
+            reader.readAsDataURL(this.file)
 
-            reader.readAsDataURL(file)
         },
         allTags(item) {
             this.tags.splice(this.tags.indexOf(item), 1)
             this.memTags.push(item)
-            this.formData.memTagId.push(item.id)
+            this.memTagId.push(item.id)
 
         },
         selectedTags(item) {
             this.memTags.splice(this.memTags.indexOf(item), 1)
-            this.formData.memTagId.splice(this.formData.memTagId.indexOf(item), 1)
+            this.memTagId.splice(this.memTagId.indexOf(item), 1)
             this.tags.push(item)
         },
 
         selectedCategory(item)
         {
-            this.formData.category_id = item
+            this.category_id = item
         },
         addMem(){
-            axios.post('/mem', this.formData)
+            let formDataImage = new FormData();
+
+            formDataImage.append("title", this.title);
+            formDataImage.append("content", this.content);
+            formDataImage.append("category_id", this.category_id);
+            formDataImage.append("file", this.file);
+
+            for (var i = 0; i < this.memTagId.length; i++) {
+                formDataImage.append("tags[]", this.memTagId[i]);
+            }
+
+            axios.post('/mem', formDataImage,)
                 .then((response) => {
                     this.$toast.success(`Mem został dodany!`);
                     if(response.status === 200)
                     {
-                       this.cancel();
+                       this.reset();
                     }
                 })
                 .catch((error) =>
@@ -133,14 +145,14 @@ export default {
         getError(fieldName){
             return this.errors[fieldName][0];
         },
-        cancel()
+        reset()
         {
             this.livePaper = false;
             this.current = '-1';
             this.errors = [''];
-            this.formData.title = '';
-            this.formData.content = '';
-            this.formData.image = '';
+            this.title = '';
+            this.content = '';
+            this.image = '';
         }
     }
 }
