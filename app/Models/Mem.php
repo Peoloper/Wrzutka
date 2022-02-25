@@ -17,12 +17,15 @@ class Mem extends Model
 
     protected $table = 'memes';
 
+    const UPDATED_AT = null;
+
     protected $fillable = [
         'title',
         'content',
         'category_id',
         'is_published',
-        'like'
+        'like',
+        'date_added',
     ];
 
     public function user(): BelongsTo
