@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         $memes = Mem::with(['favorite','liked','photos', 'user.photos'])
             ->where('is_published', 1)
-            ->latest('updated_at')
+            ->latest('date_added')
             ->paginate(8);
 
         return view('welcome', [

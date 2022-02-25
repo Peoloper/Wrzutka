@@ -7,6 +7,7 @@ use App\Http\Requests\MemRequest;
 use App\Http\Traits\PhotoTrait;
 use App\Models\Mem;
 use App\Models\Tag;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -17,14 +18,11 @@ class MemController extends Controller
     public function store(MemRequest $request)
     {
         $data = $request->validated();
-        $filePath = $this->uploadImage($data['image'], 'memes');
+        $filePath = $this->uploadImage($data['file'], 'memes');
 
         $mem = Mem::create($data);
-        $mem->tags()->sync($data['memTagId']);
+        $mem->tags()->sync($data['tags']);
         $mem->photos()->create(['path' => $filePath]);
-
-        return response()->json('test');
-
     }
 
     public function show(Mem $mem)
@@ -36,7 +34,7 @@ class MemController extends Controller
 
     public function update(Mem $mem)
     {
-        $mem->update(['is_published' => 1]);
+        $mem->update(['is_published' => 1, 'date_added' => Carbon::now()]);
         return back();
     }
 

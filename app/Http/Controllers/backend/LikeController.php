@@ -11,7 +11,7 @@ class LikeController extends Controller
 {
     public function likeMem(Mem $mem)
     {
-        $mem->update(['like' => $mem->like + 1 ]);
+        $mem->update(['like' => $mem->like + 1]);
         Auth::user()->likes()->attach($mem->id);
 
         $like = $mem->select('like')->where('id', $mem->id)->first();
@@ -21,7 +21,7 @@ class LikeController extends Controller
 
     public function unLikeMem(Mem $mem)
     {
-        $mem->update(['like' => $mem->like - 1 ]);
+        $mem->update(['like' => $mem->like - 1]);
         Auth::user()->likes()->detach($mem->id);
 
         $like = $mem->select('like')->where('id', $mem->id)->first();
