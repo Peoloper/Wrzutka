@@ -35,6 +35,7 @@ class MemController extends Controller
     public function update(Mem $mem)
     {
         $mem->update(['is_published' => 1, 'date_added' => Carbon::now()]);
+        toast('Mem został dodany na główną','success');
         return back();
     }
 

@@ -25,15 +25,22 @@ class SettingController extends Controller
 
         $hashed = Hash::make($data['password']);
         \Auth::user()->update(['password' => $hashed]);
-
-        return response()->json('dzia');
-
     }
+
     public function updateAvatar(UserPhotoRequest $request)
     {
         $data = $request->validated();
+
         $filePath = $this->uploadImage($data['img'], 'users');
-        $this->deleteImage(\Auth::user(), 'users');
-        \Auth::user()->photos()->update(['path' => $filePath]);
+
+        if(\Auth::user()->photos == null)
+        {
+            \Auth::user()->photos()->create(['path' => $filePath]);
+        }
+        else
+        {
+            $this->deleteImage(\Auth::user(), 'users');
+            \Auth::user()->photos()->update(['path' => $filePath]);
+        }
     }
 }

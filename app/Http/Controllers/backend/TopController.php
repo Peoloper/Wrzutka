@@ -12,7 +12,8 @@ class TopController extends Controller
    public function index()
    {
        $memes = Mem::with(['favorite','liked','photos', 'user.photos'])
-           ->where('like', '>' ,999)
+           ->where('like', '>' ,100)
+           ->where('is_published', 1)
            ->orderBy('like','DESC')
            ->take(50)
            ->paginate(8);
