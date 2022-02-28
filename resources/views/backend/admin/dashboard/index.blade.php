@@ -25,7 +25,7 @@
                         <div class="inner">
                             <h3></h3>
                             {{$mem}}
-                            <p>Posts</p>
+                            <p>Memes</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-pen-square"></i>
@@ -73,27 +73,4 @@
             </div>
         </div>
     </div>
-{{--
-<div class="container">
-    @forelse($notifications as $notification)
-    <div class="alert alert-success" role="alert">
-        [{{ $notification->created_at }}] User has writer new post.
-<a href="#" class="float-right mark-as-read" data-id="{{ $notification->id }}">
-    Mark as read
-</a>
-</div>
-@if($loop->last)
-<a href="#" id="mark-all">
-    Mark all as read
-</a>
-@endif
-@empty
-There are no new notifications
-@endforelse
-        </div>}}
-    <div id="app" class="container">
-
-        <notification/>
-    </div>
-    --}}
 @endsection
