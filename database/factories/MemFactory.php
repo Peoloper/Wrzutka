@@ -29,7 +29,8 @@ class MemFactory extends Factory
             'content' => $this->faker->text(300),
             'created_at'  => Carbon::now(),
             'updated_at'  => Carbon::now(),
-            'is_published' => 1,
+            'is_published' => $this->faker->numberBetween(0,1),
+            'like' => $this->faker->numberBetween(50,300),
 
             'user_id' => function() {
                 return User::all()->random()->id;
