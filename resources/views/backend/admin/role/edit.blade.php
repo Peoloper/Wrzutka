@@ -64,7 +64,7 @@
                                             </div>
                                             <br>
                                             <div class="card-footer">
-                                                <button type="submit" class="btn btn-lg btn-primary">Update Tag</button>
+                                                <button type="submit" class="btn btn-lg btn-primary">Update</button>
                                             </div>
                                         </div>
                                     </form>
