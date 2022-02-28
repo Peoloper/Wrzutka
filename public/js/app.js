@@ -22739,7 +22739,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['memid'],
+  props: ['memid', 'photo', 'user_id'],
   data: function data() {
     return {
       comments: {},
@@ -22840,7 +22840,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       isLikes: '',
-      test: this.counter
+      numberLike: this.counter
     };
   },
   mounted: function mounted() {
@@ -22856,8 +22856,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post('/like/' + mem).then(function (response) {
-        _this.test = response.data;
-        _this.isLikes = true; //console.log(this.test)
+        _this.numberLike = response.data.like;
+        _this.isLikes = true;
       })["catch"](function (response) {// console.log(response.data)
       });
     },
@@ -22865,7 +22865,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.post('/unlike/' + mem).then(function (response) {
-        _this2.test = response.data;
+        _this2.numberLike = response.data.like;
         _this2.isLikes = false;
       })["catch"](function (response) {//console.log(response.data)
       });
@@ -23029,18 +23029,40 @@ __webpack_require__.r(__webpack_exports__);
     toggleShow: function toggleShow() {
       this.show = !this.show;
     },
+
+    /**
+     * crop success
+     *
+     * [param] imgDataUrl
+     * [param] field
+     */
     cropSuccess: function cropSuccess(imgDataUrl, field) {
-      // console.log('-------- crop success --------');
+      console.log('-------- crop success --------');
       this.imgDataUrl = imgDataUrl;
     },
-    cropUploadSuccess: function cropUploadSuccess(jsonData, field) {// console.log('-------- upload success --------');
-      // console.log(jsonData);
+
+    /**
+     * upload success
+     *
+     * [param] jsonData  server api return data, already json encode
+     * [param] field
+     */
+    cropUploadSuccess: function cropUploadSuccess(jsonData, field) {
+      console.log('-------- upload success --------'); // console.log(jsonData);
       // console.log('field: ' + field);
     },
+
+    /**
+     * upload fail
+     *
+     * [param] status    server api return error status, like 500
+     * [param] field
+     */
     cropUploadFail: function cropUploadFail(status, field) {
-      this.imgDataUrl = this.path; // console.log('-------- upload fail --------');
-      // console.log(status);
-      // console.log('field: ' + field);
+      this.imgDataUrl = this.path;
+      console.log('-------- upload fail --------');
+      console.log(status);
+      console.log('field: ' + field);
     }
   }
 });
@@ -23067,6 +23089,7 @@ var _hoisted_2 = {
   "class": "col-md-11 col-lg-9 marginAuto"
 };
 var _hoisted_3 = {
+  key: 0,
   "class": "mt-4"
 };
 var _hoisted_4 = {
@@ -23077,7 +23100,7 @@ var _hoisted_5 = {
 };
 var _hoisted_6 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [$props.user_id > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     name: "comment",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.formData.comment = $event;
@@ -23095,7 +23118,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.addComment && $options.addComment.apply($options, arguments);
     })
-  }, "Submit Comment")]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.comments, function (comment, index) {
+  }, "Submit Comment")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.comments, function (comment, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "mt-4 border p-2 wrapText",
       style: {
@@ -23103,7 +23126,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       },
       key: index
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("figure", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-      src: comment.user.photos.path,
+      src: comment.user.photos ? comment.user.photos.path : $props.photo,
       alt: "Image",
       "class": "avatar img-fluid"
     }, null, 8
@@ -23217,7 +23240,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.like($props.mem);
     }, ["prevent"]))
-  }, _hoisted_4))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.test), 1
+  }, _hoisted_4))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.numberLike), 1
   /* TEXT */
   )], 64
   /* STABLE_FRAGMENT */
