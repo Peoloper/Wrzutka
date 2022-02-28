@@ -31,18 +31,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/waiting', [WaitingController::class, 'index'])->name('waiting');
 
-Route::post('mem/{id}/store',[CommentController::class, 'store']);
 Route::get('mem/{id}/getComments/{mem}',[CommentController::class, 'getComments']);
-
-Route::post('/mem' ,[MemController::class, 'store']);
 Route::get('/mem/{mem}/{slug}' ,[MemController::class, 'show'])->name('mem.show');
-
-Route::put('/mem/{mem}' ,[MemController::class, 'update'])->name('mem.update');
-Route::delete('/mem/{mem}' ,[MemController::class, 'destroy'])->name('mem.destroy');
-
 
 Route::group(['middleware'=>['auth']], function ()
 {
+    Route::post('/mem' ,[MemController::class, 'store']);
+    Route::put('/mem/{mem}' ,[MemController::class, 'update'])->name('mem.update');
+    Route::delete('/mem/{mem}' ,[MemController::class, 'destroy'])->name('mem.destroy');
+
     Route::get('favorite', [FavoriteController::class, 'index'])->name('favorite');
     Route::post('favorite/{mem}', [FavoriteController::class  ,'favoriteMem']);
     Route::post('unfavorite/{mem}', [FavoriteController::class,'unFavoriteMem']);
@@ -59,6 +56,7 @@ Route::group(['middleware'=>['auth']], function ()
     Route::get('/profile/{userName}/comments',[CommentController::class, 'getCommentsUser'])->name('user.comments.get');
 
     Route::get('top', [TopController::class,'index'])->name('top.index');
+    Route::post('mem/{id}/store',[CommentController::class, 'store']);
 });
 
 Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=>['auth', 'role:Admin']], function ()
@@ -69,8 +67,7 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=>['auth', 'role:
     Route::resource('user', UserController::class);
     Route::resource('role', RoleController::class);
 
-     Route::get('/permission', PermissionController::class)->name('permission.index');
-
+    Route::get('/permission', PermissionController::class)->name('permission.index');
 });
 
 Auth::routes();
