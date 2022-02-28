@@ -7,7 +7,9 @@
              <i class="fas fa-plus  fa-lg " style="color:red"></i>
         </a>
     </span>
-    <p>{{this.test}}</p>
+    <p>{{numberLike}}
+
+    </p>
 
 </template>
 
@@ -17,7 +19,7 @@ export default {
     data: function() {
         return {
             isLikes: '',
-            test: this.counter,
+            numberLike: this.counter,
         }
     },
 
@@ -35,9 +37,8 @@ export default {
         like(mem) {
             axios.post('/like/'+mem)
                 .then(response => {
-                    this.test = response.data
-                    this.isLikes = true
-                    //console.log(this.test)
+                    this.numberLike = response.data.like;
+                    this.isLikes = true;
                 })
                 .catch(response => {
                    // console.log(response.data)
@@ -47,8 +48,8 @@ export default {
         unLike(mem) {
             axios.post('/unlike/'+mem)
                 .then(response => {
-                    this.test = response.data
-                    this.isLikes = false
+                    this.numberLike = response.data.like;
+                    this.isLikes = false;
                 })
                 .catch(response => {
                     //console.log(response.data)

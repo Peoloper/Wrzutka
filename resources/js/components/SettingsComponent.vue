@@ -109,23 +109,38 @@ export default {
         toggleShow() {
             this.show = !this.show;
         },
-
+        /**
+         * crop success
+         *
+         * [param] imgDataUrl
+         * [param] field
+         */
         cropSuccess(imgDataUrl, field){
-            // console.log('-------- crop success --------');
+            console.log('-------- crop success --------');
             this.imgDataUrl = imgDataUrl;
         },
-
+        /**
+         * upload success
+         *
+         * [param] jsonData  server api return data, already json encode
+         * [param] field
+         */
         cropUploadSuccess(jsonData, field){
-          // console.log('-------- upload success --------');
+           console.log('-------- upload success --------');
            // console.log(jsonData);
            // console.log('field: ' + field);
         },
-
+        /**
+         * upload fail
+         *
+         * [param] status    server api return error status, like 500
+         * [param] field
+         */
         cropUploadFail(status, field){
             this.imgDataUrl = this.path
-            // console.log('-------- upload fail --------');
-            // console.log(status);
-            // console.log('field: ' + field);
+            console.log('-------- upload fail --------');
+            console.log(status);
+            console.log('field: ' + field);
         }
     },
 }
