@@ -10,7 +10,7 @@
                                 <p class="me-2 mt-3">{{Str::limit($mem->title, 20)}}</p>
                             </a>
                             <figure class="author-figure float-left">
-                                <img src="{{$mem->user->photos->path ?? null}}" alt="Image" class="avatar img-fluid">
+                                <img src="{{$mem->user->photos->path ?? asset('images/default.png')}}" alt="Image" class="avatar img-fluid">
                                 @if (Auth::check())
                                     <a href="{{route('profile.index', ['userName' => $mem->user->name])}}">
                                         <span class="d-inline-block mt-1">{{$mem->user->name}}</span>
@@ -20,17 +20,17 @@
                             </figure>
                         </div>
                         <div class="group-card">
-                            <img src="{{$mem->photos->path ?? null}}" alt="" class="card-img">
+                            <img src="{{$mem->photos->path}}" alt="" class="card-img">
                         </div>
                         <div class="group-card text-center">
                             <favorite :mem="{{ $mem->id }}" :favorited={{ $mem->favorite->count()}}></favorite>
                             <like :mem="{{ $mem->id }}" :likes="{{$mem->liked->count()}}" :counter="{{$mem->like}}"></like>
 
-                            @hasrole('Admin')
+                            @hasanyrole('Admin|Moderator')
                                 <a href="{{route('mem.destroy', $mem)}}" class="btn btn-sm btn-danger mr-1" id="delete">
                                     <i class="fas fa-trash"></i>
                                 </a>
-                            @endhasrole
+                            @endhasanyrole
                         </div>
 
                     </div>

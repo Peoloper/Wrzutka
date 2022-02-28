@@ -10,7 +10,7 @@
                 @foreach($comments as $comment)
                     <div class="col-md-10 col-lg-8 mt-2 marginAuto border p-2">
                         <figure class="author-figure float-left">
-                            <img src="{{$comment->user->photos->path ?? null}}" alt="Image" class="avatar img-fluid">
+                            <img src="{{$comment->user->photos->path ?? asset('images/default.png')}}" alt="Image" class="avatar img-fluid">
                         </figure>
                         <span class="d-inline-block mt-1">{{$comment->user->name}} <a href="#"></a></span>
                         <span>&nbsp;-&nbsp;{{$comment->created_at->diffForHumans()}} </span>

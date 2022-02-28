@@ -20,7 +20,7 @@
                         <div class=" mt-3 border p-2">
                             <div class="group-card">
                                 <a href="{{route('mem.show', ['mem' => $mem, 'slug' => $mem->slug])}}">
-                                    <img src="{{$mem->photos->path ?? null}}" alt="" class="card-img">
+                                    <img src="{{$mem->photos->path}}" alt="" class="card-img">
                                 </a>
                             </div>
                         </div>
