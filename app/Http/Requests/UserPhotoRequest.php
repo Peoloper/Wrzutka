@@ -16,7 +16,6 @@ class UserPhotoRequest extends FormRequest
         return [
             'img' => [
                 'required',
-                'mimes:jpeg,jpg,png|max:8000'
             ]
         ];
     }
