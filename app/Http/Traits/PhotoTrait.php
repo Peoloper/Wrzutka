@@ -29,10 +29,8 @@ trait PhotoTrait
 
     public function deleteImage($model, $folder)
     {
-
         $file_name = basename($model->photos->path);
-        $test = public_path().'/images/'.$folder.'/'.$file_name;
-        File::delete($test);
-
+        $path = public_path().'/images/'.$folder.'/'.$file_name;
+        File::delete($path);
     }
 }
