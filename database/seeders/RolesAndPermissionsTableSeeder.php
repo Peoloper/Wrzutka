@@ -28,5 +28,7 @@ class RolesAndPermissionsTableSeeder extends Seeder
         $role2 = Role::create(['name' => 'Moderator']);
         $role2->givePermissionTo('delete mem');
         $role2->givePermissionTo('publish mem');
+
+        $role3 = Role::create(['name' => 'User']);
     }
 }

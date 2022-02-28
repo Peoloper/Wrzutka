@@ -14,9 +14,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-           // UserTableSeeder::class,
-          //  RolesAndPermissionsTableSeeder::class,
-            PhotosTableSeeder::class
+           RolesAndPermissionsTableSeeder::class, //1
+           UserTableSeeder::class, //1
+           // PhotosTableSeeder::class //3
         ]);
     }
 }
+//2
+
+//MemTag::withoutEvents(function () {
+//    return MemTag::factory()->count(10)->create();
+//});

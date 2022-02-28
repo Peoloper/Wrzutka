@@ -20,21 +20,21 @@ class PhotosTableSeeder extends Seeder
 
     public function run()
     {
-        for ($i = 0; $i < 2; $i++)
+        for ($i = 1; $i <= 3; $i++)
         {
             DB::table('photos')->insert([
                 'photoable_type' => 'App\Models\User',
-                'photoable_id' => User::all()->unique()->random()->id,
-                'path' => 'users/user.png'
+                'photoable_id' => $i,
+                'path' => 'users/'.$i.'.png'
             ]);
         }
 
-        for($i = 0; $i < 10; $i++)
+        for($i = 1; $i <= 10; $i++)
         {
             DB::table('photos')->insert([
                 'photoable_type' => 'App\Models\Mem',
-                'photoable_id' => Mem::all()->unique()->random()->id,
-                'path' => 'memes/mem'.$i.'.png'
+                'photoable_id' => $i,
+                'path' => 'memes/'.$i.'.png'
             ]);
         }
     }
