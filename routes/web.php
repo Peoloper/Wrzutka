@@ -11,10 +11,12 @@ use App\Http\Controllers\backend\admin\RoleController;
 use App\Http\Controllers\backend\SettingController;
 use App\Http\Controllers\backend\TopController;
 use App\Http\Controllers\backend\admin\UserController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\backend\MemController;
 use App\Http\Controllers\backend\admin\TagController;
+use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\WaitingController;
+use App\Http\Controllers\frontend\CategoryController as FrontCategoryController;
+use App\Http\Controllers\frontend\TagController as FrontTagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,10 +55,13 @@ Route::group(['middleware'=>['auth']], function ()
     Route::post('setting/avatar', [SettingController::class,'updateAvatar'])->name('update.avatar');
 
     Route::get('/profile/{userName}',[ProfileController::class, 'index'])->name('profile.index');
-    Route::get('/profile/{userName}/comments',[CommentController::class, 'getCommentsUser'])->name('user.comments.get');
+    Route::get('/profile/{userName:name}/comments',[CommentController::class, 'getCommentsUser'])->name('user.comments.get');
 
     Route::get('top', [TopController::class,'index'])->name('top.index');
     Route::post('mem/{id}/store',[CommentController::class, 'store']);
+
+    Route::get('category/{category:slug}', FrontCategoryController::class)->name('front.category');
+    Route::get('tag/{tag:name}', FrontTagController::class)->name('front.tag');
 });
 
 Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware'=>['auth', 'role:Admin']], function ()
