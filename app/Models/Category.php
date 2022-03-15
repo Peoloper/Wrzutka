@@ -14,7 +14,7 @@ class Category extends Model
         'slug'
     ];
 
-    public function posts(): HasMany
+    public function memes(): HasMany
     {
         return $this->hasMany(Mem::class);
     }
