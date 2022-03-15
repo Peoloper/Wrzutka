@@ -58,8 +58,8 @@
                     </div>
 
                     <div class="form-group mt-5">
-                        <button class="btn btn-success btn-block" @click="addMem;">Dodaj mema</button>
-                        <button type="button" @click="reset"> Anuluj </button>
+                        <button class="btn btn-success m-2" @click="addMem">Dodaj mema</button>
+                        <button class="btn btn-danger" @click="reset"> Anuluj </button>
                     </div>
                 </div>
                 </form>
