@@ -22,6 +22,15 @@
                         </div>
                     </div>
                 @endforeach
+
+                @if($comments->total() > $comments->perPage())
+                    <div class="pt-4">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item"><a class="page-link" href="{{ $comments->previousPageUrl() }}">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ $comments->nextPageUrl() }}">Next</a></li>
+                        </ul>
+                    </div>
+                @endif
             </div>
             @guest
                 <div class="col-md-8 col-lg-4 mt-4 max-width">

@@ -56,17 +56,17 @@
                     </li>
                     <li class="nav-item mt-auto">
                         <a href="{{route('admin.role.index')}}" class="nav-link ">
-                            <i class="nav-icon fas fa-user"></i>
+                            <i class="nav-icon fas fa-user-shield"></i>
                             <p>
-                                Role
+                                Roles
                             </p>
                         </a>
                     </li>
                     <li class="nav-item mt-auto">
                         <a href="{{route('admin.permission.index')}}" class="nav-link ">
-                            <i class="nav-icon fas fa-user"></i>
+                            <i class="nav-icon fas fa-key"></i>
                             <p>
-                                Permission
+                                Permissions
                             </p>
                         </a>
                     </li>

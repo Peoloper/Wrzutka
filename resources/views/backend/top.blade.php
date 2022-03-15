@@ -32,19 +32,20 @@
                                 </a>
                             @endhasanyrole
                         </div>
-
                     </div>
-
                 @endforeach
+
+                @if($memes->total() > $memes->perPage())
+                    <div class="pt-4">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item"><a class="page-link" href="{{ $memes->previousPageUrl() }}">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ $memes->nextPageUrl() }}">Next</a></li>
+                        </ul>
+                    </div>
+                @endif
             </div>
             <div class="col-md-8 col-lg-4 mt-4 max-width">
                 @include('partials.AuthUser')
-            </div>
-            <div class="text-center pt-5">
-                <ul class="pagination ">
-                    <li class="page-item"><a class="page-link" href="{{ $memes->previousPageUrl() }}">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="{{ $memes->nextPageUrl() }}">Next</a></li>
-                </ul>
             </div>
         </div>
     </div>

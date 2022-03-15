@@ -10,9 +10,9 @@
         </div>
         <div class="card-body">
             <div class="group-card text-center">
-                <a href="{{route('profile.index', ['userName' => auth()->user()->name])}}"><button class="button btn-primary">Profil</button></a>
-                <a href="{{route('setting')}}"><button>Ustawienia</button></a>
-                <a href="{{route('favorite')}}"> <button>Ulubione</button></a>
+                <a href="{{route('profile.index', ['userName' => auth()->user()->name])}}"><button class="btn btn-success">Profil</button></a>
+                <a href="{{route('setting')}}"><button class="btn btn-success">Ustawienia</button></a>
+                <a href="{{route('favorite')}}"> <button class="btn btn-success">Ulubione</button></a>
             </div>
         </div>
         <div class="row">
