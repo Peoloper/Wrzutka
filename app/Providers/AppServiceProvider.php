@@ -34,11 +34,13 @@ class AppServiceProvider extends ServiceProvider
 
         View::share('featuredMemes',  cache()->remember('featuredMemes', today()->endOfDay(), function()
         {
-            return Mem::with(['photos', 'user.photos' ])
+            return Mem::with(['photos', 'user.photos'])
                 ->where('is_published', 1)
                 ->inRandomOrder()
                 ->limit(5)
                 ->get();
         }));
+
+        View::share('categories', Category::all());
     }
 }
