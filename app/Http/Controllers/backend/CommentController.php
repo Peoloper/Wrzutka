@@ -15,7 +15,7 @@ class CommentController extends Controller
         $comment = Comment::create($request->validated());
     }
 
-    public function getComments($memid)
+    public function getComments(int $memid)
     {
         $comment = Comment::with(['user', 'user.photos'])
             ->where('mem_id', $memid)
@@ -25,13 +25,13 @@ class CommentController extends Controller
         return response()->json($comment);
     }
 
-    public function getCommentsUser($userName)
+    public function getCommentsUser(string $userName)
     {
-        $user = User::where('name', $userName)->first();
+        $user = User::where('name', $userName)->firstOrFail();
 
         $comments = Comment::with(['user.photos','mem'])
             ->where('user_id', $user->id)
-            ->get();
+            ->paginate(10);
 
         return view('backend.comments',[
             'user' => $user,

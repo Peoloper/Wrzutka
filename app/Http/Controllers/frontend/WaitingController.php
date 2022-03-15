@@ -20,8 +20,7 @@ class WaitingController extends Controller
 
         return view('frontend.waiting', [
             'memes' => $memes,
-            'categories' => Category::all(),
-            'tags' =>Tag::all()
+            'tags' => Tag::all()
         ]);
     }
 }

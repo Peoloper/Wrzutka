@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function index($userName)
+    public function index(string $userName)
     {
         $user = User::where('name', $userName)->firstOrFail();
 
@@ -19,7 +19,6 @@ class ProfileController extends Controller
                 ->where('user_id', $user->id)
                 ->latest()
                 ->paginate(8),
-
         ]);
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\frontend;
 
 use App\Models\Category;
 use App\Models\Mem;
 use App\Models\Tag;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -18,8 +18,7 @@ class HomeController extends Controller
 
         return view('welcome', [
             'memes' => $memes,
-            'categories' => Category::all(),
-            'tags' =>Tag::all()
+            'tags' => Tag::all()
         ]);
     }
 }

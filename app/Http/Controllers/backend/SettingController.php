@@ -42,5 +42,7 @@ class SettingController extends Controller
             $this->deleteImage(\Auth::user(), 'users');
             \Auth::user()->photos()->update(['path' => $filePath]);
         }
+
+        return response()->json('Upload success');
     }
 }
