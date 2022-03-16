@@ -13,6 +13,9 @@
                 <a href="{{route('profile.index', ['userName' => auth()->user()->name])}}"><button class="btn btn-success">Profil</button></a>
                 <a href="{{route('setting')}}"><button class="btn btn-success">Ustawienia</button></a>
                 <a href="{{route('favorite')}}"> <button class="btn btn-success">Ulubione</button></a>
+                @hasrole('Admin')
+                    <a href="{{route('admin.dashboard')}}"> <button class="btn btn-danger">Panel</button></a>
+                @endhasrole
             </div>
         </div>
         <div class="row">
