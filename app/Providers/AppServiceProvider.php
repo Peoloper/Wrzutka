@@ -31,16 +31,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+        if (! app()->runningInConsole()) {
+            View::share('featuredMemes', cache()->remember('featuredMemes', today()->endOfDay(), function () {
+                return Mem::with(['photos', 'user.photos'])
+                    ->where('is_published', 1)
+                    ->inRandomOrder()
+                    ->limit(5)
+                    ->get();
+            }));
 
-        View::share('featuredMemes',  cache()->remember('featuredMemes', today()->endOfDay(), function()
-        {
-            return Mem::with(['photos', 'user.photos'])
-                ->where('is_published', 1)
-                ->inRandomOrder()
-                ->limit(5)
-                ->get();
-        }));
-
-        View::share('categories', Category::all());
+            View::share('categories', Category::all());
+        }
     }
 }
