@@ -79,10 +79,9 @@ Run the database seeder
 
     php artisan db:seed
 
-Run the generate secret key
+Run to generate a secret key
 
     php artisan key:generate
-
 
 Start the local development server
 
