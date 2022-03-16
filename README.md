@@ -1,66 +1,85 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+
+## Project Overview 🎉
+About the wrzutka 
+
+This is a project where the logged in user can add meme. Then the users can express liking of this meme by adding a plus to it. The more added pluses under that meme would mean better chances of placing it to the home page by the administrator or moderator.
+
+## Tech/framework used 🔧
+
+| Tech                                                    | Description                              |
+| ------------------------------------------------------- | ---------------------------------------- |
+| [PHP](https://www.php.net/docs.php)                           | version 7.4   |
+| [Laravel](https://laravel.com/docs/8.x/readme)                           | version 8.x   |
+| [Vue](https://vuejs.org/guide/introduction.html)                           | version 3.x   |
+| [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)                           | version 5.0   |
+| [Spatie Permission ](https://spatie.be/docs/laravel-permission/v5/introduction)                           | version 5.4   |
+| [Yajra datatables](https://datatables.yajrabox.com/starter)                           | version 1.5   |
+| [Intervention-Images](https://image.intervention.io/v2)                           | version 2.7   |
+| [Sweet-Alert](https://github.com/realrashid/sweet-alert)                           | version 4.1   |
+| [Vue-Toaster](https://www.npmjs.com/package/@meforma/vue-toaster/v/1.3.0)                           | version 1.3   |
+| [Vue-Image-Crop-Upload](https://www.npmjs.com/package/vue-image-crop-upload)                           | version 3.0.3   |
+| [Vue-Cropper](https://www.npmjs.com/package/vue-cropperjs)                           | version 5.0.0   |
+
+
+## Screenshots 📺
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+Home Page
 </p>
 
-## About Laravel
+<p align = "center">
+<img src="https://user-images.githubusercontent.com/82052456/158614167-a706e33d-409f-45e2-8bf2-3c26b1ae8d60.PNG">
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<p align="center">Add mem </p>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<p align="center">
 
-## Learning Laravel
+<img src="https://user-images.githubusercontent.com/82052456/158614279-337e6b83-6043-4533-8bd8-52dbfd7ab822.PNG">
+</p>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<p align="center">Waiting page </p>
 
-## Laravel Sponsors
+<p align="center">
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<img src="https://user-images.githubusercontent.com/82052456/158614297-e8b1bd81-3d79-4a93-8081-394d6dec29d2.PNG">
+</p>
 
-### Premium Partners
+<p align="center">Admin LTE Panel </p>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+<p align="center">
 
-## Contributing
+<img src="https://user-images.githubusercontent.com/82052456/158614312-15f1efe0-28e0-4c30-a594-b4bb01ab714b.PNG">
+</p>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Installation 💾
+Clone the repository
 
-## Code of Conduct
+    https://github.com/Peoloper/Wrzutka.git
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Switch to the repo folder
 
-## Security Vulnerabilities
+    cd wrzutka
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Install all the dependencies using composer
 
-## License
+    composer install
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Copy the example env file and make the required configuration changes in the .env file
+
+    cp .env.example .env
+
+Run the database migrations
+
+    php artisan migrate
+
+Run the database seeder
+
+    php artisan db:seed
+
+Start the local development server
+
+    php artisan serve
+
